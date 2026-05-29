@@ -1,0 +1,37 @@
+
+
+/*
+FUNCTION: FN_REPLACE_NAMES
+OBJETIVO: NORMALIZAR OS CAMPOS DE NOME DO USUARIO A PARTIR DE REGRAS SAS
+AUTOR: DANILO MELO
+ALTERAÇOES:
+26-03-2024 - VERSÃO INICIAL
+ */
+
+CREATE OR REPLACE FUNCTION NONPROD_BRAZILHEALTHANALYTICS_BRADESCO.GOLD.FN_REPLACE_NAMES(
+    "FIELD_NAME" VARCHAR)
+RETURNS VARCHAR 
+ LANGUAGE SQL
+  AS  '
+
+SELECT REPLACE(REPLACE( REPLACE(REPLACE( REPLACE(REPLACE( REPLACE( REPLACE( REPLACE( REPLACE( 
+          REPLACE( REPLACE( REPLACE( REPLACE( REPLACE( REPLACE( REPLACE( REPLACE( REPLACE( 
+          REPLACE( REPLACE( REPLACE( REPLACE( REPLACE( REPLACE( REPLACE( REPLACE(
+          REPLACE( REPLACE( REPLACE( REPLACE( REPLACE( REPLACE( REPLACE( REPLACE(
+          REPLACE( REPLACE( REPLACE( REPLACE( REPLACE( REPLACE(UPPER(FIELD_NAME),
+                                   '' DO '','' ''),'' DOS '','' ''),'' DA '','' ''),'' DE '','' ''),''ZZ'',''Z''),''YY'',''Y''),''XX'',''X''),''WW'',''W''),''VV'',''V''),''UU'',''U''),''TT'',''T''),''SS'',''S''),
+                                   ''RR'',''R''),''QQ'',''Q''),''PP'',''P''),''OO'',''O''),''NN'',''N''),''MM'',''M''),''LL'',''L''),''KK'',''K''),
+                                   ''JJ'',''J''),''II'',''I''),''HH'',''H''),''GG'',''G''),''FF'',''F''),''EE'',''E''),''DD'',''D''),''CC'',''C''),
+                                   ''BB'',''B''),''AA'',''A''),''Á'',''A''),''Ã'',''A''),''É'',''E''),''Ê'',''E''), ''Í'',''I''),''Õ'',''O''),''Ô'',''O''),''Ó'',''O''),''Ú'',''U''),
+                                   ''.'','' ''),''-'','' '') 
+
+
+
+  ';                                   
+;
+
+-- GRANTS PARA CONCEDER PRIVILÉGIO DE LEITURA AS ROLES QUE O POWERBI UTILIZA
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA NONPROD_BRAZILHEALTHANALYTICS_BRADESCO.GOLD to ROLE NONPROD_ENGINEER;
+GRANT ALL PRIVILEGES ON ALL views IN SCHEMA NONPROD_BRAZILHEALTHANALYTICS_BRADESCO.GOLD to ROLE NONPROD_ENGINEER;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA NONPROD_BRAZILHEALTHANALYTICS_BRADESCO.GOLD to ROLE nonprod_analyst;
+GRANT ALL PRIVILEGES ON ALL views IN SCHEMA NONPROD_BRAZILHEALTHANALYTICS_BRADESCO.GOLD to ROLE nonprod_analyst;

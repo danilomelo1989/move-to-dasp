@@ -1,0 +1,39 @@
+/*
+FUNCTION: CHAVE_JOIN
+OBJETIVO: PADRONIZAR CRIACAO DE UMA CHAVE JOIN ATRAVES DE MULTIPLAS TABELAS
+ */
+
+CREATE OR REPLACE FUNCTION NONPROD_BRAZILHEALTHANALYTICS_BRADESCO.GOLD.FN_PRE_CHAVE_JOIN(
+    "DT_REFR" DATE,
+    "CD_OPRD" VARCHAR,
+    "CD_EMPR" VARCHAR,
+    "CD_PLNO" VARCHAR,
+    "CD_APLC" VARCHAR,
+    "CD_EMPR_GRPO" VARCHAR,
+    "FL_SEXO" VARCHAR,
+    "NR_IDDE" INTEGER,
+    "NM_FAIX_ETRA" VARCHAR,
+    "NM_CATG_USRO" VARCHAR,
+    "CD_DIVISAO" VARCHAR,
+    "PLANO_AON_2" VARCHAR
+)
+RETURNS VARCHAR
+LANGUAGE SQL
+AS $$
+SELECT 
+    CONCAT(
+        coalesce(DT_REFR, '9999-12-31')
+        ,coalesce(CD_OPRD, 'NULL')
+        ,coalesce(CD_EMPR, 'NULL')
+        ,coalesce(CD_PLNO, 'NULL')
+        ,coalesce(CD_APLC, 'NULL')
+        ,coalesce(CD_EMPR_GRPO, 'NULL')
+        ,coalesce(FL_SEXO, 'NULL')
+        ,coalesce(NR_IDDE, -1)
+        ,coalesce(NM_FAIX_ETRA, 'NULL')
+        ,coalesce(NM_CATG_USRO, 'NULL')
+        ,coalesce(CD_DIVISAO, 'NULL')
+        ,coalesce(PLANO_AON_2, 'NULL')
+    )
+$$
+;

@@ -1,0 +1,12 @@
+typings/
+build/
+dist/
+modules.egg-info/
+
+.databricks
+.venv
+.vscode
+__pycache__
+SNOWFLAKE/DATABASES/NONPROD_BRAZILHEALTHANALYTICS_BRADESCO/GOLD/rascunho.sql
+SNOWFLAKE/DATABASES/RASCUNHO/*
+
